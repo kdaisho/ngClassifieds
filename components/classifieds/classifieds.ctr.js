@@ -4,7 +4,7 @@
 
     angular
         .module('ngClassifieds')
-        .controller('classifiedsCtrl', function($scope, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog) {
+        .controller('classifiedsCtrl', function($scope, $state, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog) {
 
             var vm = this;
 
@@ -31,9 +31,8 @@
                 email: 'daishokomiyama@gmail.com'
             };
 
-
             function openSidebar() {
-                $mdSidenav('left').open();
+                $state.go('classifieds.new');
             }
 
             function closeSidebar() {

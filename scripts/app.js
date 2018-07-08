@@ -12,7 +12,11 @@ angular
                 url: '/classifieds',
                 templateUrl: 'components/classifieds/classifieds.tmp.html',
                 controller: 'classifiedsCtrl as vm'
+            })
+            .state('classifieds.new', {
+                url: '/new',
+                templateUrl: 'components/classifieds/new/classifieds.new.tmp.html',
+                controller: 'newClassifiedsCtrl as vm'
             });
-
         $locationProvider.hashPrefix('');
     });
