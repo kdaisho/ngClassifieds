@@ -8,13 +8,10 @@ angular
             .accentPalette('orange');
 
         $stateProvider
-            .state('stateone', {
-                url: '/stateone',
-                template: '<h1>State One</h1>'
-            })
-            .state('statetwo', {
-                url: '/statetwo',
-                template: '<h1>State Two</h1>'
+            .state('classifieds', {
+                url: '/classifieds',
+                templateUrl: 'components/classifieds/classifieds.tmp.html',
+                controller: 'classifiedsCtrl as vm'
             });
 
         $locationProvider.hashPrefix('');
