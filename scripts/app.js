@@ -1,14 +1,21 @@
 'use strict';
 
 angular
-    .module('ngClassifieds', ['ngMaterial'])
-    .config(function($mdThemingProvider) {
+    .module('ngClassifieds', ['ngMaterial', 'ui.router'])
+    .config(function($mdThemingProvider, $stateProvider, $locationProvider) {
         $mdThemingProvider.theme('default')
             .primaryPalette('teal')
             .accentPalette('orange');
-    })
-    .directive('helloWorld', function() {
-        return {
-            template: '<h1>{{ message }}</h1>'
-        }
+
+        $stateProvider
+            .state('stateone', {
+                url: '/stateone',
+                template: '<h1>State One</h1>'
+            })
+            .state('statetwo', {
+                url: '/statetwo',
+                template: '<h1>State Two</h1>'
+            });
+
+        $locationProvider.hashPrefix('');
     });
