@@ -16,12 +16,50 @@
         <div class="md-toolbar-tools">
             <p><strong>ngClassifieds</strong></p>
 
-            <md-button>
+            <md-button ng-click="openSidebar()">
                 <md-icon class="mdi mdi-plus-circle"></md-icon>
                 New Classified
             </md-button>
         </div>
     </md-toolbar>
+
+    <md-sidenav
+        class="md-sidenav-left md-whiteframe-z6"
+        md-component-id="left">
+        <md-toolbar>
+            <h1 class="md-toolbar-tools">Add a classified</h1>
+        </md-toolbar>
+
+        <md-content layout-padding>
+            <form>
+                <md-input-container>
+                    <label for="title">Title</label>
+                    <input type="text" id="title" md-autofocus>
+                </md-input-container>
+                <md-input-container>
+                    <label for="price">Price</label>
+                    <input type="text" id="price">
+                </md-input-container>
+                <md-input-container>
+                    <label for="description">Description</label>
+                    <input type="text" id="description">
+                </md-input-container>
+                <md-input-container>
+                    <label for="image">Image Link</label>
+                    <input type="text" id="image">
+                </md-input-container>
+                <md-button class="md-primary">
+                    Save
+                </md-button>
+                <md-button class="md-primary">
+                    Save Edit
+                </md-button>
+                <md-button class="md-warn" ng-click="closeSidebar()">
+                    Cancel
+                </md-button>
+            </form>
+        </md-content>
+    </md-sidenav>
 
 
     <md-content class="md-padding" layout="row" layout-wrap>
@@ -29,11 +67,11 @@
             <img ng-src="{{ classified.image }}" alt="stuff">
             <md-card-content>
 
-                <div class="classified-info" ng-show="!showContact">
+                <div class="classified-info" ng-show="!showContact" layout-padding>
                     <h2 class="md-title md-padding">{{ classified.title }}</h2>
-                    <h2 class="md-padding">{{ classified.posted | date:'longDate' }}</h2>
-                    <h3 class="md-padding">{{ classified.price | currency }}</h3>
-                    <p class="md-padding">{{ classified.description }}</p>
+                    <h2>{{ classified.posted | date:'longDate' }}</h2>
+                    <h3>{{ classified.price | currency }}</h3>
+                    <p>{{ classified.description }}</p>
                     <!-- <pre>{{ classified | json}}</pre> -->
                 </div>
 
@@ -84,5 +122,6 @@
     <script src="node_modules/angular-material/angular-material.js"></script>
     <script src="scripts/app.js"></script>
     <script src="components/classifieds.ctr.js"></script>
+    <script src="components/classifieds.fac.js"></script>
 </body>
 </html>
