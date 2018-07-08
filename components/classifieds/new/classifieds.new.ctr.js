@@ -40,13 +40,10 @@
                         email: 'daishokomiyama@gmail.com'
                     };
 
-                    $scope.emit('newClassified', classified);
-                    $scope.sidenavOpen = false;
+                    $scope.$emit('newClassified', classified);
+                    self.sidenavOpen = false;
                 }
             }
-            // $timeout(function() {
-            //     self.valueToChange = 2;
-            //     console.log(self.valueToChange);
-            // }, 2000);
+
         });
 })();

@@ -16,13 +16,18 @@
             vm.editing;
             vm.editClassified = editClassified;
             vm.openSidebar = openSidebar;
-            vm.saveClassified = saveClassified;
+            // vm.saveClassified = saveClassified;
             vm.saveEdit = saveEdit;
-
 
             classifiedsFactory.getClassifieds().then(function(res) {
                 vm.classifieds = res.data;
                 vm.categories = getCategories(vm.classifieds);
+            });
+
+            $scope.$on('newClassified', function(event, classified) {
+                classified.id = vm.classifieds.length + 1;
+                vm.classifieds.push(classified);
+                showToast('Classified saved!');
             });
 
             var contact = {
@@ -39,15 +44,15 @@
                 $mdSidenav('left').close();
             }
 
-            function saveClassified(classified) {
-                if (classified) {
-                    classified.contact = contact;
-                    vm.classifieds.push(classified)
-                    vm.classified = {};
-                    closeSidebar();
-                    showToast('Classified saved!');
-                }
-            }
+            // function saveClassified(classified) {
+            //     if (classified) {
+            //         classified.contact = contact;
+            //         vm.classifieds.push(classified)
+            //         vm.classified = {};
+            //         closeSidebar();
+            //         showToast('Classified saved!');
+            //     }
+            // }
 
             function editClassified(classified) {
                 vm.editing = true;
