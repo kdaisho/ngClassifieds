@@ -47,3 +47,23 @@ a {
 button .material-icons {
     vertical-align: top;
 }
+
+.classified.ng-enter,
+.classified.ng-move {
+    transition: .5s opacity;
+    opacity: 0;
+}
+
+.classified.ng-enter.ng-enter-active,
+.classified.ng-move.ng-move-active {
+    opacity: 1;
+}
+
+.classified.ng-leave {
+    transition: .5s opacity;
+    opacity: 1;
+}
+
+.classified.ng-leave.ng-leave-active {
+    opacity: 0;
+}
