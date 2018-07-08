@@ -4,7 +4,7 @@
 
     angular
         .module('ngClassifieds')
-        .controller('classifiedsCtrl', function($scope, classifiedsFactory, $mdSidenav, $mdToast) {
+        .controller('classifiedsCtrl', function($scope, classifiedsFactory, $mdSidenav, $mdToast, $mdDialog) {
 
             classifiedsFactory.getClassifieds().then(function(res) {
                 $scope.classifieds = res.data;
@@ -18,11 +18,11 @@
 
             $scope.openSidebar = function() {
                 $mdSidenav('left').open();
-            }
+            };
 
             $scope.closeSidebar = function() {
                 $mdSidenav('left').close();
-            }
+            };
 
             $scope.saveClassified = function(classified) {
                 if (classified) {
@@ -30,14 +30,44 @@
                     $scope.classifieds.push(classified)
                     $scope.classified = {};
                     $scope.closeSidebar();
-
-                    $mdToast.show(
-                        $mdToast.simple()
-                            .content('Classified saved!')
-                            .position('top, right')
-                            .hideDelay(3000)
-                    );
+                    showToast('Classified saved!');
                 }
+            };
+
+            $scope.editClassified = function(classified) {
+                $scope.editing = true;
+                $scope.openSidebar();
+                $scope.classified = classified;
+            };
+
+            $scope.saveEdit = function() {
+                $scope.editing = false;
+                $scope.classified = {};
+                $scope.closeSidebar();
+                showToast('Edit saved!');
+            };
+
+            $scope.deleteClassified = function(event, classified) {
+                var confirm = $mdDialog.confirm()
+                    .title('Are you sure you want to delete ' + classified.title + '?')
+                    .ok('Yes')
+                    .cancel('No')
+                    .targetEvent(event);
+                $mdDialog.show(confirm).then(function() {
+                    var index = $scope.classifieds.indexOf(classified);
+                    $scope.classifieds.splice(index, 1);
+                }, function() {
+
+                });
+            };
+
+            function showToast(message) {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .content(message)
+                        .position('top, right')
+                        .hideDelay(3000)
+                );
             }
         });
 })();
