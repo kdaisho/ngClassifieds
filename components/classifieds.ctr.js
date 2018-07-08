@@ -4,7 +4,10 @@
 
     angular
         .module('ngClassifieds')
-        .controller('classifiesCtrl', function() {
+        .controller('classifiedsCtrl', function($scope) {
+
+
+            $scope.message = 'Heyyy';
 
         });
 })();
