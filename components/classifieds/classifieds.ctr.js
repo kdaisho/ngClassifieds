@@ -55,9 +55,10 @@
             // }
 
             function editClassified(classified) {
-                vm.editing = true;
-                openSidebar();
-                vm.classified = classified;
+                $state.go('classifieds.edit', {
+                    id: classified.id,
+                    classified: classified
+                });
             }
 
             function saveEdit() {

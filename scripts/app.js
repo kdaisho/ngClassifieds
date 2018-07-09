@@ -17,6 +17,14 @@ angular
                 url: '/new',
                 templateUrl: 'components/classifieds/new/classifieds.new.tmp.html',
                 controller: 'newClassifiedsCtrl as vm'
+            })
+            .state('classifieds.edit', {
+                url: '/edit/:id',
+                templateUrl: 'components/classifieds/edit/classifieds.edit.tmp.html',
+                controller: 'editClassifiedsCtrl as vm',
+                params: {
+                    classified: null
+                }
             });
         $locationProvider.hashPrefix('');
     });

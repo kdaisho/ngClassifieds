@@ -6,12 +6,12 @@
         .module('ngClassifieds')
         .controller('newClassifiedsCtrl', function($state, $scope, $mdSidenav, $mdDialog, classifiedsFactory, $timeout) {
 
-            var self = this;
+            var vm = this;
 
-            self.closeSidebar = closeSidebar;
-            self.saveClassified = saveClassified;
+            vm.closeSidebar = closeSidebar;
+            vm.saveClassified = saveClassified;
 
-            self.sidebarTitle = 'Add a Classified';
+            // vm.sidebarTitle = 'Add a Classified';
 
             $scope.$watch('vm.sidenavOpen', function(sidenav) {
                 if (sidenav === false) {
@@ -28,8 +28,8 @@
             });
 
             function closeSidebar() {
-                self.classified = {};
-                self.sidenavOpen = false;
+                vm.classified = {};
+                vm.sidenavOpen = false;
             }
 
             function saveClassified(classified) {
@@ -41,7 +41,7 @@
                     };
 
                     $scope.$emit('newClassified', classified);
-                    self.sidenavOpen = false;
+                    vm.sidenavOpen = false;
                 }
             }
 
