@@ -9,7 +9,7 @@
             var vm = this;
 
             vm.closeSidebar = closeSidebar;
-            vm.saveClassified = saveClassified;
+            vm.saveEdit = saveEdit;
             vm.classified = $state.params.classified;
 
             // vm.sidebarTitle = 'Add a Classified';
@@ -33,17 +33,9 @@
                 vm.sidenavOpen = false;
             }
 
-            function saveClassified(classified) {
-                if(classified) {
-                    classified.contact = {
-                        name: 'Daisho',
-                        phone: '(514) 775-9111',
-                        email: 'daishokomiyama@gmail.com'
-                    };
-
-                    $scope.$emit('editClassified', classified);
-                    vm.sidenavOpen = false;
-                }
+            function saveEdit() {
+                $scope.$emit('editSaved', 'Edit saved!');
+                vm.sidenavOpen = false;
             }
 
         });

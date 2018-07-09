@@ -30,15 +30,19 @@
                 showToast('Classified saved!');
             });
 
+            $scope.$on('editSaved', function(event, msg) {
+                showToast(msg);
+            });
+
+            function openSidebar() {
+                $state.go('classifieds.new');
+            }
+
             var contact = {
                 name: 'Daisho',
                 phone: '(555) 524-5588',
                 email: 'daishokomiyama@gmail.com'
             };
-
-            function openSidebar() {
-                $state.go('classifieds.new');
-            }
 
             function closeSidebar() {
                 $mdSidenav('left').close();
