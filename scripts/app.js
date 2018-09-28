@@ -7,6 +7,7 @@ angular
             .primaryPalette('teal')
             .accentPalette('orange');
 
+        //URL: <domain>/#/classifieds
         $stateProvider
             .state('classifieds', {
                 url: '/classifieds',
