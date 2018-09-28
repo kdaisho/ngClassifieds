@@ -20,8 +20,8 @@
             vm.saveEdit = saveEdit;
 
             classifiedsFactory.getClassifieds().then(function(res) {
-                vm.classifieds = res.data;
-                vm.categories = getCategories(vm.classifieds);
+                // vm.classifieds = res.data;
+                // vm.categories = getCategories(vm.classifieds);
             });
 
             $scope.$on('newClassified', function(event, classified) {
@@ -47,6 +47,48 @@
             function closeSidebar() {
                 $mdSidenav('left').close();
             }
+
+            var typingTimer;
+            var doneInterval = 2000;
+            var myInput = document.getElementById('query');
+
+            myInput.addEventListener('keyup', function(url) {
+                clearTimeout(typingTimer);
+                if (myInput.value) {
+                    console.log('keyup fired');
+                    typingTimer = setTimeout(
+                        callAjax('/data/classifieds.json', function(data) {
+                            vm.classifieds = data;
+                            vm.categories = getCategories(vm.classifieds);
+                        }),
+                        doneInterval
+                    );
+                }
+            });
+
+            function callAjax(url, callback) {
+                return function() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        console.log('ajax called');
+                        if (xhttp.readyState == 4 && xhttp.status == 200) {
+                            try {
+                                var data = JSON.parse(xhttp.responseText);
+                                console.log('DATA: ' + data);
+                            }
+                            catch(error) {
+                                console.log(error.message + ' in ' + xhttp.responseText);
+                                return;
+                            }
+                            callback(data);
+                        }
+                    };
+
+                    xhttp.open('GET', url, true);
+                    xhttp.send();
+                }
+            }
+
 
             // function saveClassified(classified) {
             //     if (classified) {
